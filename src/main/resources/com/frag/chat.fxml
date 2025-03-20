@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frag.controllers.ChatController"
+      spacing="10" alignment="center" prefWidth="400" prefHeight="500" style="-fx-padding: 10; -fx-background-color: #F4F4F4;">
+    
+    <ScrollPane fitToWidth="true" prefHeight="400" style="-fx-background: #FFFFFF; -fx-border-color: #CCCCCC;">
+        <VBox fx:id="chatBox" spacing="5" style="-fx-padding: 10;" />
+    </ScrollPane>
+
+    <HBox spacing="10">
+        <TextField fx:id="messageField" promptText="Digite sua mensagem..." HBox.hgrow="ALWAYS"/>
+        <Button text="Enviar" onAction="#handleSendMessage" />
+    </HBox>
+
+</VBox>
