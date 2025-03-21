@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frag.controllers.ChatController"
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frag.views.ChatView"
       spacing="10" alignment="center" prefWidth="400" prefHeight="500" style="-fx-padding: 10; -fx-background-color: #F4F4F4;">
     
     <ScrollPane fitToWidth="true" prefHeight="400" style="-fx-background: #FFFFFF; -fx-border-color: #CCCCCC;">

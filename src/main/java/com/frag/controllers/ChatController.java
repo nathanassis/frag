@@ -1,51 +1,26 @@
 package com.frag.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.geometry.Pos;
-import javafx.scene.text.Font;
-import javafx.scene.input.KeyCode;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class ChatController {
+    public static void talk(String query) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
 
-    @FXML
-    private VBox chatBox;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://127.0.0.1:8000"))
+                    .GET()
+                    .build();
 
-    @FXML
-    private TextField messageField;
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-    @FXML
-    private ScrollPane messagesPane;
-
-    @FXML
-    public void initialize() {
-        messageField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                handleSendMessage();
-            }
-        });
-    }
-
-    @FXML
-    private void handleSendMessage() {
-        String message = messageField.getText().trim();
-
-        if (!message.isEmpty()) {
-            Label messageLabel = new Label(message);
-            messageLabel.setFont(new Font(14));
-            messageLabel.setWrapText(true);
-            messageLabel.setStyle("-fx-background-color: #DCF8C6; -fx-padding: 8px; -fx-background-radius: 10px;");
-            messageLabel.setMaxWidth(300);
-
-            VBox container = new VBox(messageLabel);
-            container.setAlignment(Pos.CENTER_RIGHT);
-
-            chatBox.getChildren().add(container);
-
-            messageField.clear();
+            System.out.println("Código HTTP: " + response.statusCode());
+            System.out.println("Resposta: " + response.body());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
